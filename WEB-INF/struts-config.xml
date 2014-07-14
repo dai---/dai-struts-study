@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<form-beans>
+		<!--beanにはデータを格納するActionFormクラスを設定します-->
+		<!--nameは略称、typeはpathを含むファイル名です-->
+		<form-bean
+			name="Action"
+			type="struts.TestActionForm"/>
+		</form-beans>
+
+	<global-forwards>
+		<forward
+			name="welcome"
+			path="/Welcome.do"/>
+	</global-forwards>
+
+	<action-mappings>
+		<!--actionは実際に処理を行うActionクラスを設定します-->
+		<!--pathはjspで指定するときの略称です-->
+		<!--nameは使用するbean(ActionForm)の略称を入れます-->
+		<!--typeはpathを含むファイル名です-->
+		<!--scopeはデータ転送形式です-->
+		<!--inputは実行されるjspです-->
+		<action
+			path="/Welcome"
+			forward="/pages/Welcome.jsp"/>
+		<action
+			path="/TestAction"
+			type="struts.TestAction"
+			name="Action"
+			scope="request"
+			input="/addition.jsp">
+			<forward name="result.jsp" path="/HTML/JSP/result.jsp"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="java.MessageResources"/>
+</struts-config>
